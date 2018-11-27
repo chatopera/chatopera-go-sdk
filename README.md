@@ -16,9 +16,9 @@
 
 [创建机器人](#创建机器人)
 
-[执行程序](#执行程序)
+[执行示例程序](#执行示例程序)
 
-[帮助](#帮助)
+[单元测试](#单元测试)
 
 [更多SDK](#更多SDK)
 
@@ -133,7 +133,7 @@ chatbot.Chats # 用户聊天历史
 
 【提示】**更多接口介绍请访问[API接口文档](https://chatopera.github.io/chatopera-go-sdk/)。各接口的返回值详细描述请访问[开发者平台文档中心](https://docs.chatopera.com/chatbot-platform.html)。**
 
-## 贡献
+## 单元测试
 
 单元测试: [chatopera_test.go](https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera_test.go)
 
