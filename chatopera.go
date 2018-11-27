@@ -131,7 +131,7 @@ type BotDetail struct {
 	PrimaryLanguage string `json:"primaryLanguage"`
 }
 
-func (c *Chatopera) detail() (*BotDetail, error) {
+func (c *Chatopera) Detail() (*BotDetail, error) {
 	path := "/api/v1/chatbot/" + c.appID
 	result := new(BotDetail)
 
@@ -156,7 +156,7 @@ type ConversationBody struct {
 	IsDebug     bool   `json:"isDebug"`
 }
 
-func (c *Chatopera) conversation(userID string, textMessage string) (*ConversationResult, error) {
+func (c *Chatopera) Conversation(userID string, textMessage string) (*ConversationResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/conversation/query"
 	result := new(ConversationResult)
 
@@ -184,7 +184,7 @@ type FaqBody struct {
 	Query      string `json:"query"`
 }
 
-func (c *Chatopera) faq(userID string, query string) (*[]FaqResult, error) {
+func (c *Chatopera) Faq(userID string, query string) (*[]FaqResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/faq/query"
 	result := new([]FaqResult)
 
@@ -205,7 +205,7 @@ type UsersResult struct {
 	Created  string `json:"created"`
 }
 
-func (c *Chatopera) users(limit int, page int, sortby string) (int32, int32, int32, *[]UsersResult, error) {
+func (c *Chatopera) Users(limit int, page int, sortby string) (int32, int32, int32, *[]UsersResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users?page=" + strconv.Itoa(page) + "&limit=" + strconv.Itoa(limit) + "&sortby=" + sortby
 	result := new([]UsersResult)
 
@@ -219,7 +219,7 @@ type ChatsResult struct {
 	Created  string `json:"created"`
 }
 
-func (c *Chatopera) chats(userID string, limit int, page int, sortby string) (int32, int32, int32, *[]ChatsResult, error) {
+func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (int32, int32, int32, *[]ChatsResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/chats?page=" + strconv.Itoa(page) + "&limit=" + strconv.Itoa(limit) + "&sortby=" + sortby
 	result := new([]ChatsResult)
 
@@ -227,13 +227,13 @@ func (c *Chatopera) chats(userID string, limit int, page int, sortby string) (in
 	return total, currentPage, totalPage, result, err
 }
 
-func (c *Chatopera) mute(userID string) error {
+func (c *Chatopera) Mute(userID string) error {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/mute"
 	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, nil)
 	return err
 }
 
-func (c *Chatopera) unmute(userID string) error {
+func (c *Chatopera) Unmute(userID string) error {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/unmute"
 	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, nil)
 	return err
@@ -243,7 +243,7 @@ type IsmuteResult struct {
 	Mute bool `json:"mute"`
 }
 
-func (c *Chatopera) ismute(userID string) (bool, error) {
+func (c *Chatopera) Ismute(userID string) (bool, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/ismute"
 	result := new(IsmuteResult)
 	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, result)
@@ -259,7 +259,7 @@ type UserResult struct {
 
 var s = time.Now
 
-func (c *Chatopera) user(userID string) (*UserResult, error) {
+func (c *Chatopera) User(userID string) (*UserResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/profile"
 	result := new(UserResult)
 	_, _, _, err := request(c.appID, c.sercet, "GET", path, nil, result)
