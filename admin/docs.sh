@@ -17,3 +17,4 @@ fi
 mkdir docs
 cd docs
 godoc -html  .. > index.html
+sed -i 's/\/src\/target\//https:\/\/github.com\/chatopera\/chatopera-go-sdk\/blob\/master\//' index.html

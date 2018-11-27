@@ -1,3 +1,10 @@
+// Copyright 2018 Chatopera Inc. All rights reserved.
+// This software and related documentation are provided under a license agreement containing
+// restrictions on use and disclosure and are protected by intellectual property laws.
+// Except as expressly permitted in your license agreement or allowed by law, you may not use,
+// copy, reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit, perform,
+// publish, or display any part, in any form, or by any means. Reverse engineering, disassembly,
+// or decompilation of this software, unless required by law for interoperability, is prohibited.
 package chatopera
 
 import (
@@ -66,6 +73,7 @@ type Chatopera struct {
 	sercet string
 }
 
+// 聊天机器人实例
 func Chatbot(appID string, sercet string) *Chatopera {
 	result := new(Chatopera)
 	result.appID = appID
@@ -86,6 +94,7 @@ func httpClient() *http.Client {
 	return &http.Client{Timeout: 5 * time.Second}
 }
 
+// 发送请求工具方法
 func request(appID string, sercet string, method string, path string, body io.Reader, v interface{}) (int32, int32, int32, error) {
 	t, err := generate(appID, sercet, method, path)
 	if err != nil {
@@ -123,6 +132,7 @@ func request(appID string, sercet string, method string, path string, body io.Re
 	return res.Total, res.CurrentPage, res.TotalPage, nil
 }
 
+// 机器人详情
 type BotDetail struct {
 	Name            string `json:"name"`
 	Fallback        string `json:"fallback"`
@@ -131,6 +141,7 @@ type BotDetail struct {
 	PrimaryLanguage string `json:"primaryLanguage"`
 }
 
+// 获得机器人详情
 func (c *Chatopera) Detail() (*BotDetail, error) {
 	path := "/api/v1/chatbot/" + c.appID
 	result := new(BotDetail)
@@ -139,6 +150,7 @@ func (c *Chatopera) Detail() (*BotDetail, error) {
 	return result, err
 }
 
+// 多轮对话回复
 type ConversationResult struct {
 	State           string      `json:"state"`
 	CreatedAt       int64       `json:"createdAt"`
@@ -156,6 +168,7 @@ type ConversationBody struct {
 	IsDebug     bool   `json:"isDebug"`
 }
 
+// 检索多轮对话
 func (c *Chatopera) Conversation(userID string, textMessage string) (*ConversationResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/conversation/query"
 	result := new(ConversationResult)
@@ -172,6 +185,7 @@ func (c *Chatopera) Conversation(userID string, textMessage string) (*Conversati
 	return result, err
 }
 
+// 知识库回复
 type FaqResult struct {
 	ID    string  `json:"id"`
 	Score float32 `json:"score"`
@@ -184,6 +198,7 @@ type FaqBody struct {
 	Query      string `json:"query"`
 }
 
+// 检索知识库
 func (c *Chatopera) Faq(userID string, query string) (*[]FaqResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/faq/query"
 	result := new([]FaqResult)
@@ -199,12 +214,14 @@ func (c *Chatopera) Faq(userID string, query string) (*[]FaqResult, error) {
 	return result, err
 }
 
+// 用户信息
 type UsersResult struct {
 	UserID   string `json:"userId"`
 	Lasttime string `json:"lasttime"`
 	Created  string `json:"created"`
 }
 
+// 获得用户列表
 func (c *Chatopera) Users(limit int, page int, sortby string) (int32, int32, int32, *[]UsersResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users?page=" + strconv.Itoa(page) + "&limit=" + strconv.Itoa(limit) + "&sortby=" + sortby
 	result := new([]UsersResult)
@@ -213,12 +230,14 @@ func (c *Chatopera) Users(limit int, page int, sortby string) (int32, int32, int
 	return total, currentPage, totalPage, result, err
 }
 
+// 聊天历史
 type ChatsResult struct {
 	UserID   string `json:"userId"`
 	Lasttime string `json:"lasttime"`
 	Created  string `json:"created"`
 }
 
+// 获得聊天历史
 func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (int32, int32, int32, *[]ChatsResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/chats?page=" + strconv.Itoa(page) + "&limit=" + strconv.Itoa(limit) + "&sortby=" + sortby
 	result := new([]ChatsResult)
@@ -227,22 +246,26 @@ func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (in
 	return total, currentPage, totalPage, result, err
 }
 
+// 屏蔽用户
 func (c *Chatopera) Mute(userID string) error {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/mute"
 	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, nil)
 	return err
 }
 
+// 取消屏蔽
 func (c *Chatopera) Unmute(userID string) error {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/unmute"
 	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, nil)
 	return err
 }
 
+
 type IsmuteResult struct {
 	Mute bool `json:"mute"`
 }
 
+// 用户是否被屏蔽
 func (c *Chatopera) Ismute(userID string) (bool, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/ismute"
 	result := new(IsmuteResult)
@@ -250,6 +273,7 @@ func (c *Chatopera) Ismute(userID string) (bool, error) {
 	return result.Mute, err
 }
 
+// 用户画像
 type UserResult struct {
 	UserID   string `json:"userId"`
 	Name     string `json:"name"`

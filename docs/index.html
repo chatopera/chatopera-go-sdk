@@ -19,7 +19,7 @@
 		
 		<div id="short-nav">
 			<dl>
-			<dd><code>import ".."</code></dd>
+			<dd><code>import "github.com/chatopera/chatopera-go-sdk"</code></dd>
 			</dl>
 			<dl>
 			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
@@ -35,7 +35,16 @@
 			</div>
 			<div class="expanded">
 				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
-				
+				<p>
+Copyright 2018 Chatopera Inc. All rights reserved.
+This software and related documentation are provided under a license agreement containing
+restrictions on use and disclosure and are protected by intellectual property laws.
+Except as expressly permitted in your license agreement or allowed by law, you may not use,
+copy, reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit, perform,
+publish, or display any part, in any form, or by any means. Reverse engineering, disassembly,
+or decompilation of this software, unless required by law for interoperability, is prohibited.
+</p>
+
 				
 			</div>
 		</div>
@@ -157,7 +166,7 @@
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="/src/target/chatopera.go">chatopera.go</a>
+				<a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go">chatopera.go</a>
 			
 			</span>
 			</p>
@@ -216,12 +225,15 @@
 		
 			
 			
-			<h2 id="BotDetail">type <a href="/src/target/chatopera.go?s=2568:2808#L116">BotDetail</a>
+			<h2 id="BotDetail">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=3263:3503#L126">BotDetail</a>
 				<a class="permalink" href="#BotDetail">&#xb6;</a>
 				
 				
 			</h2>
-			
+			<p>
+机器人详情
+</p>
+
 			<pre>type BotDetail struct {
 <span id="BotDetail.Name"></span>    Name            <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
 <span id="BotDetail.Fallback"></span>    Fallback        <a href="/pkg/builtin/#string">string</a> `json:&#34;fallback&#34;`
@@ -245,7 +257,7 @@
 		
 			
 			
-			<h2 id="Chatopera">type <a href="/src/target/chatopera.go?s=1244:1299#L54">Chatopera</a>
+			<h2 id="Chatopera">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=1867:1922#L61">Chatopera</a>
 				<a class="permalink" href="#Chatopera">&#xb6;</a>
 				
 				
@@ -266,104 +278,128 @@
 
 			
 				
-				<h3 id="Chatbot">func <a href="/src/target/chatopera.go?s=1301:1353#L59">Chatbot</a>
+				<h3 id="Chatbot">func <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=1949:2001#L67">Chatbot</a>
 					<a class="permalink" href="#Chatbot">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func Chatbot(appID <a href="/pkg/builtin/#string">string</a>, sercet <a href="/pkg/builtin/#string">string</a>) *<a href="#Chatopera">Chatopera</a></pre>
-				
+				<p>
+聊天机器人实例
+</p>
+
 				
 				
 			
 
 			
 				
-				<h3 id="Chatopera.Chats">func (*Chatopera) <a href="/src/target/chatopera.go?s=5323:5444#L212">Chats</a>
+				<h3 id="Chatopera.Chats">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6201:6322#L231">Chats</a>
 					<a class="permalink" href="#Chatopera.Chats">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Chats(userID <a href="/pkg/builtin/#string">string</a>, limit <a href="/pkg/builtin/#int">int</a>, page <a href="/pkg/builtin/#int">int</a>, sortby <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, *[]<a href="#ChatsResult">ChatsResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+获得聊天历史
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.Conversation">func (*Chatopera) <a href="/src/target/chatopera.go?s=3589:3685#L149">Conversation</a>
+				<h3 id="Chatopera.Conversation">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=4353:4449#L162">Conversation</a>
 					<a class="permalink" href="#Chatopera.Conversation">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Conversation(userID <a href="/pkg/builtin/#string">string</a>, textMessage <a href="/pkg/builtin/#string">string</a>) (*<a href="#ConversationResult">ConversationResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+检索多轮对话
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.Detail">func (*Chatopera) <a href="/src/target/chatopera.go?s=2810:2858#L124">Detail</a>
+				<h3 id="Chatopera.Detail">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=3530:3578#L135">Detail</a>
 					<a class="permalink" href="#Chatopera.Detail">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Detail() (*<a href="#BotDetail">BotDetail</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+获得机器人详情
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.Faq">func (*Chatopera) <a href="/src/target/chatopera.go?s=4275:4349#L177">Faq</a>
+				<h3 id="Chatopera.Faq">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=5077:5151#L192">Faq</a>
 					<a class="permalink" href="#Chatopera.Faq">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Faq(userID <a href="/pkg/builtin/#string">string</a>, query <a href="/pkg/builtin/#string">string</a>) (*[]<a href="#FaqResult">FaqResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+检索知识库
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.Ismute">func (*Chatopera) <a href="/src/target/chatopera.go?s=6236:6291#L236">Ismute</a>
+				<h3 id="Chatopera.Ismute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7172:7227#L259">Ismute</a>
 					<a class="permalink" href="#Chatopera.Ismute">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Ismute(userID <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#bool">bool</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+用户是否被屏蔽
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.Mute">func (*Chatopera) <a href="/src/target/chatopera.go?s=5777:5822#L220">Mute</a>
+				<h3 id="Chatopera.Mute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6671:6716#L240">Mute</a>
 					<a class="permalink" href="#Chatopera.Mute">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Mute(userID <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
-				
+				<p>
+屏蔽用户
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.Unmute">func (*Chatopera) <a href="/src/target/chatopera.go?s=5977:6024#L226">Unmute</a>
+				<h3 id="Chatopera.Unmute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6887:6934#L247">Unmute</a>
 					<a class="permalink" href="#Chatopera.Unmute">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Unmute(userID <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
-				
+				<p>
+取消屏蔽
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Chatopera.User">func (*Chatopera) <a href="/src/target/chatopera.go?s=6669:6729#L252">User</a>
+				<h3 id="Chatopera.User">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7621:7681#L276">User</a>
 					<a class="permalink" href="#Chatopera.User">&#xb6;</a>
 					
 					
@@ -375,13 +411,16 @@
 				
 			
 				
-				<h3 id="Chatopera.Users">func (*Chatopera) <a href="/src/target/chatopera.go?s=4774:4880#L198">Users</a>
+				<h3 id="Chatopera.Users">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=5614:5720#L215">Users</a>
 					<a class="permalink" href="#Chatopera.Users">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Users(limit <a href="/pkg/builtin/#int">int</a>, page <a href="/pkg/builtin/#int">int</a>, sortby <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, *[]<a href="#UsersResult">UsersResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
-				
+				<p>
+获得用户列表
+</p>
+
 				
 				
 				
@@ -389,12 +428,15 @@
 		
 			
 			
-			<h2 id="ChatsResult">type <a href="/src/target/chatopera.go?s=5192:5321#L206">ChatsResult</a>
+			<h2 id="ChatsResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6048:6177#L224">ChatsResult</a>
 				<a class="permalink" href="#ChatsResult">&#xb6;</a>
 				
 				
 			</h2>
-			
+			<p>
+聊天历史
+</p>
+
 			<pre>type ChatsResult struct {
 <span id="ChatsResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
 <span id="ChatsResult.Lasttime"></span>    Lasttime <a href="/pkg/builtin/#string">string</a> `json:&#34;lasttime&#34;`
@@ -416,7 +458,7 @@
 		
 			
 			
-			<h2 id="ConversationBody">type <a href="/src/target/chatopera.go?s=3437:3587#L143">ConversationBody</a>
+			<h2 id="ConversationBody">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=4179:4329#L155">ConversationBody</a>
 				<a class="permalink" href="#ConversationBody">&#xb6;</a>
 				
 				
@@ -443,12 +485,15 @@
 		
 			
 			
-			<h2 id="ConversationResult">type <a href="/src/target/chatopera.go?s=3019:3435#L132">ConversationResult</a>
+			<h2 id="ConversationResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=3761:4177#L144">ConversationResult</a>
 				<a class="permalink" href="#ConversationResult">&#xb6;</a>
 				
 				
 			</h2>
-			
+			<p>
+多轮对话回复
+</p>
+
 			<pre>type ConversationResult struct {
 <span id="ConversationResult.State"></span>    State           <a href="/pkg/builtin/#string">string</a>      `json:&#34;state&#34;`
 <span id="ConversationResult.CreatedAt"></span>    CreatedAt       <a href="/pkg/builtin/#int64">int64</a>       `json:&#34;createdAt&#34;`
@@ -475,7 +520,7 @@
 		
 			
 			
-			<h2 id="FaqBody">type <a href="/src/target/chatopera.go?s=4177:4273#L172">FaqBody</a>
+			<h2 id="FaqBody">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=4960:5056#L186">FaqBody</a>
 				<a class="permalink" href="#FaqBody">&#xb6;</a>
 				
 				
@@ -501,12 +546,15 @@
 		
 			
 			
-			<h2 id="FaqResult">type <a href="/src/target/chatopera.go?s=4034:4175#L165">FaqResult</a>
+			<h2 id="FaqResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=4817:4958#L179">FaqResult</a>
 				<a class="permalink" href="#FaqResult">&#xb6;</a>
 				
 				
 			</h2>
-			
+			<p>
+知识库回复
+</p>
+
 			<pre>type FaqResult struct {
 <span id="FaqResult.ID"></span>    ID    <a href="/pkg/builtin/#string">string</a>  `json:&#34;id&#34;`
 <span id="FaqResult.Score"></span>    Score <a href="/pkg/builtin/#float32">float32</a> `json:&#34;score&#34;`
@@ -529,7 +577,7 @@
 		
 			
 			
-			<h2 id="IsmuteResult">type <a href="/src/target/chatopera.go?s=6181:6234#L232">IsmuteResult</a>
+			<h2 id="IsmuteResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7092:7145#L254">IsmuteResult</a>
 				<a class="permalink" href="#IsmuteResult">&#xb6;</a>
 				
 				
@@ -554,7 +602,7 @@
 		
 			
 			
-			<h2 id="Res">type <a href="/src/target/chatopera.go?s=1446:1713#L66">Res</a>
+			<h2 id="Res">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=2094:2361#L74">Res</a>
 				<a class="permalink" href="#Res">&#xb6;</a>
 				
 				
@@ -584,7 +632,7 @@
 		
 			
 			
-			<h2 id="SignatureBody">type <a href="/src/target/chatopera.go?s=461:631#L22">SignatureBody</a>
+			<h2 id="SignatureBody">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=1084:1254#L29">SignatureBody</a>
 				<a class="permalink" href="#SignatureBody">&#xb6;</a>
 				
 				
@@ -612,12 +660,15 @@
 		
 			
 			
-			<h2 id="UserResult">type <a href="/src/target/chatopera.go?s=6493:6649#L243">UserResult</a>
+			<h2 id="UserResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7445:7601#L267">UserResult</a>
 				<a class="permalink" href="#UserResult">&#xb6;</a>
 				
 				
 			</h2>
-			
+			<p>
+用户画像
+</p>
+
 			<pre>type UserResult struct {
 <span id="UserResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
 <span id="UserResult.Name"></span>    Name     <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
@@ -640,12 +691,15 @@
 		
 			
 			
-			<h2 id="UsersResult">type <a href="/src/target/chatopera.go?s=4643:4772#L192">UsersResult</a>
+			<h2 id="UsersResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=5461:5590#L208">UsersResult</a>
 				<a class="permalink" href="#UsersResult">&#xb6;</a>
 				
 				
 			</h2>
-			
+			<p>
+用户信息
+</p>
+
 			<pre>type UsersResult struct {
 <span id="UsersResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
 <span id="UsersResult.Lasttime"></span>    Lasttime <a href="/pkg/builtin/#string">string</a> `json:&#34;lasttime&#34;`
