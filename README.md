@@ -113,9 +113,9 @@ go get github.com/chatopera/chatopera-go-sdk
 ```go
 import (
 	"github.com/chatopera/chatopera-go-sdk"
-	)
-var bot = chatopera.Chatbot("YOUR CLIENT ID", "YOUR SECRET")
-reply, err := bot.Conversation("userId", "textMessage")
+)
+var chatbot = chatopera.Chatbot("YOUR CLIENT ID", "YOUR SECRET")
+reply, err := chatbot.Conversation("userId", "textMessage")
 reply.String # 机器人文本回复
 ```
 
@@ -131,24 +131,18 @@ chatbot.User # 获得用户详情，包括用户意向分类
 chatbot.Chats # 用户聊天历史
 ```
 
-【提示】**更多接口介绍请访问[测试用例]()。各接口的返回值详细描述请访问[开发者平台文档中心](https://docs.chatopera.com/chatbot-platform.html)。**
+【提示】**更多接口介绍请访问[API接口文档](https://chatopera.github.io/chatopera-go-sdk/)。各接口的返回值详细描述请访问[开发者平台文档中心](https://docs.chatopera.com/chatbot-platform.html)。**
 
 ## 贡献
 
-单元测试
+单元测试: [chatopera_test.go](https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera_test.go)
 
 ```
-./vendor/bin/phpunit --bootstrap vendor/autoload.php test/ChatbotTest.php
+cd chatopera-go-sdk
+export GOPATH=YOUR_PROJECT_GOPATH:$GOPATH
+go test -run ''
 ```
 
-
-## 卸载
-
-从项目中卸载SDK。
-
-```
-composer remove chatopera/sdk
-```
 
 ## 更多SDK
 
