@@ -66,7 +66,7 @@ type Chatopera struct {
 	sercet string
 }
 
-func NewChatopera(appID string, sercet string) *Chatopera {
+func Chatbot(appID string, sercet string) *Chatopera {
 	result := new(Chatopera)
 	result.appID = appID
 	result.sercet = sercet

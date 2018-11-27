@@ -1,18 +1,18 @@
 package chatopera_test
 
 import (
-	"chatopera"
+	"github.com/chatopera/chatopera-go-sdk"
 	"testing"
 )
 
-var bot = chatopera.NewChatopera("5bf27e4d6f80090017b404b7", "e4cbc6a65708c011ec0da73b0f5db7a1")
+var bot = chatopera.Chatbot("5bf27e4d6f80090017b404b7", "e4cbc6a65708c011ec0da73b0f5db7a1")
 
 func TestConversion(t *testing.T) {
-	_, err := bot.Conversation("xiao", "你好")
+	reply, err := bot.Conversation("xiao", "你好")
 	if err != nil {
 		t.Error(err)
 	} else {
-		t.Log("Pass")
+		t.Log("TestConversion reply:" + reply.String)
 	}
 }
 func TestFaq(t *testing.T) {
@@ -20,7 +20,7 @@ func TestFaq(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		t.Log("Pass")
+		t.Log("TestFaq reply")
 	}
 }
 func TestUsers(t *testing.T) {

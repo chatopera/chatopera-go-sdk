@@ -1,0 +1,675 @@
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script type='text/javascript'>
+	document.ANALYSIS_DATA = ;
+	document.CALLGRAPH = ;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import ".."</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+				
+				<dd><a href="#BotDetail">type BotDetail</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Chatopera">type Chatopera</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatbot">func Chatbot(appID string, sercet string) *Chatopera</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Chats">func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (int32, int32, int32, *[]ChatsResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Conversation">func (c *Chatopera) Conversation(userID string, textMessage string) (*ConversationResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Detail">func (c *Chatopera) Detail() (*BotDetail, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Faq">func (c *Chatopera) Faq(userID string, query string) (*[]FaqResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Ismute">func (c *Chatopera) Ismute(userID string) (bool, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Mute">func (c *Chatopera) Mute(userID string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Unmute">func (c *Chatopera) Unmute(userID string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.User">func (c *Chatopera) User(userID string) (*UserResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.Users">func (c *Chatopera) Users(limit int, page int, sortby string) (int32, int32, int32, *[]UsersResult, error)</a></dd>
+				
+			
+				
+				<dd><a href="#ChatsResult">type ChatsResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ConversationBody">type ConversationBody</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ConversationResult">type ConversationResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FaqBody">type FaqBody</a></dd>
+				
+				
+			
+				
+				<dd><a href="#FaqResult">type FaqResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IsmuteResult">type IsmuteResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Res">type Res</a></dd>
+				
+				
+			
+				
+				<dd><a href="#SignatureBody">type SignatureBody</a></dd>
+				
+				
+			
+				
+				<dd><a href="#UserResult">type UserResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#UsersResult">type UsersResult</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/target/chatopera.go">chatopera.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		<div id="pkg-callgraph" class="toggle" style="display: none">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Internal Call Graph section">Internal call graph ▹</h2>
+		</div> <!-- .expanded -->
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Internal Call Graph section">Internal call graph ▾</h2>
+			<p>
+			  In the call graph viewer below, each node
+			  is a function belonging to this package
+			  and its children are the functions it
+			  calls&mdash;perhaps dynamically.
+			</p>
+			<p>
+			  The root nodes are the entry points of the
+			  package: functions that may be called from
+			  outside the package.
+			  There may be non-exported or anonymous
+			  functions among them if they are called
+			  dynamically from another package.
+			</p>
+			<p>
+			  Click a node to visit that function's source code.
+			  From there you can visit its callers by
+			  clicking its declaring <code>func</code>
+			  token.
+			</p>
+			<p>
+			  Functions may be omitted if they were
+			  determined to be unreachable in the
+			  particular programs or tests that were
+			  analyzed.
+			</p>
+			<!-- Zero means show all package entry points. -->
+			<ul style="margin-left: 0.5in" id="callgraph-0" class="treeview"></ul>
+		</div>
+		</div> <!-- #pkg-callgraph -->
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+    <span id="SaasAPI">SaasAPI</span> = &#34;https://bot.chatopera.com&#34;
+)</pre>
+			
+		
+		
+		
+		
+			
+			
+			<h2 id="BotDetail">type <a href="/src/target/chatopera.go?s=2568:2808#L116">BotDetail</a>
+				<a class="permalink" href="#BotDetail">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type BotDetail struct {
+<span id="BotDetail.Name"></span>    Name            <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
+<span id="BotDetail.Fallback"></span>    Fallback        <a href="/pkg/builtin/#string">string</a> `json:&#34;fallback&#34;`
+<span id="BotDetail.Description"></span>    Description     <a href="/pkg/builtin/#string">string</a> `json:&#34;description&#34;`
+<span id="BotDetail.Welcome"></span>    Welcome         <a href="/pkg/builtin/#string">string</a> `json:&#34;welcome&#34;`
+<span id="BotDetail.PrimaryLanguage"></span>    PrimaryLanguage <a href="/pkg/builtin/#string">string</a> `json:&#34;primaryLanguage&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Chatopera">type <a href="/src/target/chatopera.go?s=1244:1299#L54">Chatopera</a>
+				<a class="permalink" href="#Chatopera">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Chatopera struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="Chatbot">func <a href="/src/target/chatopera.go?s=1301:1353#L59">Chatbot</a>
+					<a class="permalink" href="#Chatbot">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func Chatbot(appID <a href="/pkg/builtin/#string">string</a>, sercet <a href="/pkg/builtin/#string">string</a>) *<a href="#Chatopera">Chatopera</a></pre>
+				
+				
+				
+			
+
+			
+				
+				<h3 id="Chatopera.Chats">func (*Chatopera) <a href="/src/target/chatopera.go?s=5323:5444#L212">Chats</a>
+					<a class="permalink" href="#Chatopera.Chats">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Chats(userID <a href="/pkg/builtin/#string">string</a>, limit <a href="/pkg/builtin/#int">int</a>, page <a href="/pkg/builtin/#int">int</a>, sortby <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, *[]<a href="#ChatsResult">ChatsResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Conversation">func (*Chatopera) <a href="/src/target/chatopera.go?s=3589:3685#L149">Conversation</a>
+					<a class="permalink" href="#Chatopera.Conversation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Conversation(userID <a href="/pkg/builtin/#string">string</a>, textMessage <a href="/pkg/builtin/#string">string</a>) (*<a href="#ConversationResult">ConversationResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Detail">func (*Chatopera) <a href="/src/target/chatopera.go?s=2810:2858#L124">Detail</a>
+					<a class="permalink" href="#Chatopera.Detail">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Detail() (*<a href="#BotDetail">BotDetail</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Faq">func (*Chatopera) <a href="/src/target/chatopera.go?s=4275:4349#L177">Faq</a>
+					<a class="permalink" href="#Chatopera.Faq">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Faq(userID <a href="/pkg/builtin/#string">string</a>, query <a href="/pkg/builtin/#string">string</a>) (*[]<a href="#FaqResult">FaqResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Ismute">func (*Chatopera) <a href="/src/target/chatopera.go?s=6236:6291#L236">Ismute</a>
+					<a class="permalink" href="#Chatopera.Ismute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Ismute(userID <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#bool">bool</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Mute">func (*Chatopera) <a href="/src/target/chatopera.go?s=5777:5822#L220">Mute</a>
+					<a class="permalink" href="#Chatopera.Mute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Mute(userID <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Unmute">func (*Chatopera) <a href="/src/target/chatopera.go?s=5977:6024#L226">Unmute</a>
+					<a class="permalink" href="#Chatopera.Unmute">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Unmute(userID <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.User">func (*Chatopera) <a href="/src/target/chatopera.go?s=6669:6729#L252">User</a>
+					<a class="permalink" href="#Chatopera.User">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) User(userID <a href="/pkg/builtin/#string">string</a>) (*<a href="#UserResult">UserResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Users">func (*Chatopera) <a href="/src/target/chatopera.go?s=4774:4880#L198">Users</a>
+					<a class="permalink" href="#Chatopera.Users">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) Users(limit <a href="/pkg/builtin/#int">int</a>, page <a href="/pkg/builtin/#int">int</a>, sortby <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, <a href="/pkg/builtin/#int32">int32</a>, *[]<a href="#UsersResult">UsersResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ChatsResult">type <a href="/src/target/chatopera.go?s=5192:5321#L206">ChatsResult</a>
+				<a class="permalink" href="#ChatsResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ChatsResult struct {
+<span id="ChatsResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
+<span id="ChatsResult.Lasttime"></span>    Lasttime <a href="/pkg/builtin/#string">string</a> `json:&#34;lasttime&#34;`
+<span id="ChatsResult.Created"></span>    Created  <a href="/pkg/builtin/#string">string</a> `json:&#34;created&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConversationBody">type <a href="/src/target/chatopera.go?s=3437:3587#L143">ConversationBody</a>
+				<a class="permalink" href="#ConversationBody">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ConversationBody struct {
+<span id="ConversationBody.FromUserID"></span>    FromUserID  <a href="/pkg/builtin/#string">string</a> `json:&#34;fromUserId&#34;`
+<span id="ConversationBody.TextMessage"></span>    TextMessage <a href="/pkg/builtin/#string">string</a> `json:&#34;textMessage&#34;`
+<span id="ConversationBody.IsDebug"></span>    IsDebug     <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;isDebug&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ConversationResult">type <a href="/src/target/chatopera.go?s=3019:3435#L132">ConversationResult</a>
+				<a class="permalink" href="#ConversationResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type ConversationResult struct {
+<span id="ConversationResult.State"></span>    State           <a href="/pkg/builtin/#string">string</a>      `json:&#34;state&#34;`
+<span id="ConversationResult.CreatedAt"></span>    CreatedAt       <a href="/pkg/builtin/#int64">int64</a>       `json:&#34;createdAt&#34;`
+<span id="ConversationResult.String"></span>    String          <a href="/pkg/builtin/#string">string</a>      `json:&#34;string&#34;`
+<span id="ConversationResult.TopicName"></span>    TopicName       <a href="/pkg/builtin/#string">string</a>      `json:&#34;topicName&#34;`
+<span id="ConversationResult.SubReplies"></span>    SubReplies      interface{} `json:&#34;subReplies&#34;`
+<span id="ConversationResult.LogicIsFallback"></span>    LogicIsFallback <a href="/pkg/builtin/#bool">bool</a>        `json:&#34;logic_is_fallback&#34;`
+<span id="ConversationResult.BotName"></span>    BotName         <a href="/pkg/builtin/#string">string</a>      `json:&#34;botName&#34;`
+<span id="ConversationResult.Service"></span>    Service         interface{} `json:&#34;service&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FaqBody">type <a href="/src/target/chatopera.go?s=4177:4273#L172">FaqBody</a>
+				<a class="permalink" href="#FaqBody">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FaqBody struct {
+<span id="FaqBody.FromUserID"></span>    FromUserID <a href="/pkg/builtin/#string">string</a> `json:&#34;fromUserId&#34;`
+<span id="FaqBody.Query"></span>    Query      <a href="/pkg/builtin/#string">string</a> `json:&#34;query&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FaqResult">type <a href="/src/target/chatopera.go?s=4034:4175#L165">FaqResult</a>
+				<a class="permalink" href="#FaqResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type FaqResult struct {
+<span id="FaqResult.ID"></span>    ID    <a href="/pkg/builtin/#string">string</a>  `json:&#34;id&#34;`
+<span id="FaqResult.Score"></span>    Score <a href="/pkg/builtin/#float32">float32</a> `json:&#34;score&#34;`
+<span id="FaqResult.Post"></span>    Post  <a href="/pkg/builtin/#string">string</a>  `json:&#34;post&#34;`
+<span id="FaqResult.Reply"></span>    Reply <a href="/pkg/builtin/#string">string</a>  `json:&#34;reply&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IsmuteResult">type <a href="/src/target/chatopera.go?s=6181:6234#L232">IsmuteResult</a>
+				<a class="permalink" href="#IsmuteResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IsmuteResult struct {
+<span id="IsmuteResult.Mute"></span>    Mute <a href="/pkg/builtin/#bool">bool</a> `json:&#34;mute&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Res">type <a href="/src/target/chatopera.go?s=1446:1713#L66">Res</a>
+				<a class="permalink" href="#Res">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Res struct {
+<span id="Res.RC"></span>    RC          <a href="/pkg/builtin/#int">int</a>         `json:&#34;rc&#34;`
+<span id="Res.Total"></span>    Total       <a href="/pkg/builtin/#int32">int32</a>       `json:&#34;total&#34;`
+<span id="Res.CurrentPage"></span>    CurrentPage <a href="/pkg/builtin/#int32">int32</a>       `json:&#34;current_page&#34;`
+<span id="Res.TotalPage"></span>    TotalPage   <a href="/pkg/builtin/#int32">int32</a>       `json:&#34;total_page&#34;`
+<span id="Res.Error"></span>    Error       <a href="/pkg/builtin/#string">string</a>      `json:&#34;error&#34;`
+<span id="Res.Data"></span>    Data        interface{} `json:&#34;data&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SignatureBody">type <a href="/src/target/chatopera.go?s=461:631#L22">SignatureBody</a>
+				<a class="permalink" href="#SignatureBody">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type SignatureBody struct {
+<span id="SignatureBody.AppID"></span>    AppID     <a href="/pkg/builtin/#string">string</a> `json:&#34;appId&#34;`
+<span id="SignatureBody.Timestamp"></span>    Timestamp <a href="/pkg/builtin/#string">string</a> `json:&#34;timestamp&#34;`
+<span id="SignatureBody.Random"></span>    Random    <a href="/pkg/builtin/#string">string</a> `json:&#34;random&#34;`
+<span id="SignatureBody.Signature"></span>    Signature <a href="/pkg/builtin/#string">string</a> `json:&#34;signature&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UserResult">type <a href="/src/target/chatopera.go?s=6493:6649#L243">UserResult</a>
+				<a class="permalink" href="#UserResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type UserResult struct {
+<span id="UserResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
+<span id="UserResult.Name"></span>    Name     <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
+<span id="UserResult.Lasttime"></span>    Lasttime <a href="/pkg/builtin/#string">string</a> `json:&#34;lasttime&#34;`
+<span id="UserResult.Mute"></span>    Mute     <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;mute&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="UsersResult">type <a href="/src/target/chatopera.go?s=4643:4772#L192">UsersResult</a>
+				<a class="permalink" href="#UsersResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type UsersResult struct {
+<span id="UsersResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
+<span id="UsersResult.Lasttime"></span>    Lasttime <a href="/pkg/builtin/#string">string</a> `json:&#34;lasttime&#34;`
+<span id="UsersResult.Created"></span>    Created  <a href="/pkg/builtin/#string">string</a> `json:&#34;created&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
