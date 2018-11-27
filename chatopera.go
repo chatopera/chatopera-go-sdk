@@ -232,9 +232,10 @@ func (c *Chatopera) Users(limit int, page int, sortby string) (int32, int32, int
 
 // 聊天历史
 type ChatsResult struct {
-	UserID   string `json:"userId"`
-	Lasttime string `json:"lasttime"`
-	Created  string `json:"created"`
+	UserID      string `json:"userId"`
+	TextMessage string `json:"textMessage"`
+	Direction   string `json:"direction"`
+	Created     string `json:"created"`
 }
 
 // 获得聊天历史
@@ -260,7 +261,6 @@ func (c *Chatopera) Unmute(userID string) error {
 	return err
 }
 
-
 type IsmuteResult struct {
 	Mute bool `json:"mute"`
 }
@@ -280,8 +280,6 @@ type UserResult struct {
 	Lasttime string `json:"lasttime"`
 	Mute     bool   `json:"mute"`
 }
-
-var s = time.Now
 
 func (c *Chatopera) User(userID string) (*UserResult, error) {
 	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/profile"
