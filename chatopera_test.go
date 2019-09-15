@@ -9,11 +9,12 @@
 package chatopera_test
 
 import (
-	"github.com/chatopera/chatopera-go-sdk"
 	"testing"
+
+	"github.com/chatopera/chatopera-go-sdk"
 )
 
-var bot = chatopera.Chatbot("5bf27e4d6f80090017b404b7", "e4cbc6a65708c011ec0da73b0f5db7a1")
+var bot = chatopera.Chatbot("xxx", "xxx")
 
 func TestConversion(t *testing.T) {
 	reply, err := bot.Conversation("xiao", "你好")
@@ -73,6 +74,33 @@ func TestIsmute(t *testing.T) {
 }
 func TestUser(t *testing.T) {
 	_, err := bot.User("xiao")
+	if err != nil {
+		t.Error(err)
+	} else {
+		t.Log("Pass")
+	}
+}
+
+func TestIntentSession(t *testing.T) {
+	_, err := bot.IntentSession("xiao", "golang:channel")
+	if err != nil {
+		t.Error(err)
+	} else {
+		t.Log("Pass")
+	}
+}
+
+func TestIntentSessionDetail(t *testing.T) {
+	_, err := bot.IntentSessionDetail("73CC49AB6DBE0364C29E707100000000")
+	if err != nil {
+		t.Error(err)
+	} else {
+		t.Log("Pass")
+	}
+}
+
+func TestIntentChat(t *testing.T) {
+	_, err := bot.IntentChat("73CC49AB6DBE0364C29E707100000000", "xiao", "北京有什么活动")
 	if err != nil {
 		t.Error(err)
 	} else {

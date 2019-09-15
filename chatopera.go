@@ -287,3 +287,88 @@ func (c *Chatopera) User(userID string) (*UserResult, error) {
 	_, _, _, err := request(c.appID, c.sercet, "GET", path, nil, result)
 	return result, err
 }
+
+type IntentSessionBody struct {
+	UID     string `json:"uid"`
+	Channel string `json:"channel"`
+}
+
+type IntentSlot struct {
+	DictName string `json:"dictname"`
+	Name     string `json:"name"`
+	Requires bool   `json:"requires"`
+	Val      string `json:"val"`
+}
+
+type IntentSessionResult struct {
+	Channel    string       `json:"channel"`
+	CreateDate string       `json:"createdate"`
+	ID         string       `json:"id"`
+	IntentName string       `json:"intent_name"`
+	Resolved   bool         `json:"resolved"`
+	UID        string       `json:"uid"`
+	IntentSlot []IntentSlot `json:"entities"`
+}
+
+func (c *Chatopera) IntentSession(uid string, channel string) (*IntentSessionResult, error) {
+	path := "/api/v1/chatbot/" + c.appID + "/clause/prover/session"
+	result := new(IntentSessionResult)
+	body := IntentSessionBody{
+		UID:     uid,
+		Channel: channel,
+	}
+	json, _ := json.Marshal(body)
+
+	_, _, _, err := request(c.appID, c.sercet, "POST", path, bytes.NewBuffer(json), result)
+	return result, err
+}
+
+func (c *Chatopera) IntentSessionDetail(sessionId string) (*IntentSessionResult, error) {
+	path := "/api/v1/chatbot/" + c.appID + "/clause/prover/session/" + sessionId
+	result := new(IntentSessionResult)
+	_, _, _, err := request(c.appID, c.sercet, "GET", path, nil, result)
+	return result, err
+}
+
+type IntentChatBodySession struct {
+	ID string `json:"id"`
+}
+
+type IntentChatBodyMessage struct {
+	TextMessage string `json:"textMessage"`
+}
+
+type IntentChatBody struct {
+	FromUserID string                `json:"fromUserId"`
+	Session    IntentChatBodySession `json:"session"`
+	Message    IntentChatBodyMessage `json:"message"`
+}
+
+type IntentMessage struct {
+	Receiver    string `json:"receiver"`
+	IsProactive bool   `json:"is_proactive"`
+	IsFallback  bool   `json:"is_fallback"`
+	TextMessage string `json:"textMessage"`
+}
+
+type IntentChatResult struct {
+	Message IntentMessage       `json:"message"`
+	Session IntentSessionResult `json:"session"`
+}
+
+func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string) (*IntentChatResult, error) {
+	path := "/api/v1/chatbot/" + c.appID + "/clause/prover/chat"
+	result := new(IntentChatResult)
+	body := IntentChatBody{
+		FromUserID: uid,
+		Session: IntentChatBodySession{
+			ID: sessionId,
+		},
+		Message: IntentChatBodyMessage{
+			TextMessage: textMessage,
+		},
+	}
+	json, _ := json.Marshal(body)
+	_, _, _, err := request(c.appID, c.sercet, "POST", path, bytes.NewBuffer(json), result)
+	return result, err
+}
