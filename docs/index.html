@@ -19,7 +19,7 @@
 		
 		<div id="short-nav">
 			<dl>
-			<dd><code>import "github.com/chatopera/chatopera-go-sdk"</code></dd>
+			<dd><code>import ".."</code></dd>
 			</dl>
 			<dl>
 			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
@@ -90,6 +90,15 @@ or decompilation of this software, unless required by law for interoperability, 
 					<dd>&nbsp; &nbsp; <a href="#Chatopera.Faq">func (c *Chatopera) Faq(userID string, query string) (*[]FaqResult, error)</a></dd>
 				
 					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.IntentChat">func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string) (*IntentChatResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.IntentSession">func (c *Chatopera) IntentSession(uid string, channel string) (*IntentSessionResult, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Chatopera.IntentSessionDetail">func (c *Chatopera) IntentSessionDetail(sessionId string) (*IntentSessionResult, error)</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="#Chatopera.Ismute">func (c *Chatopera) Ismute(userID string) (bool, error)</a></dd>
 				
 					
@@ -127,6 +136,46 @@ or decompilation of this software, unless required by law for interoperability, 
 			
 				
 				<dd><a href="#FaqResult">type FaqResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentChatBody">type IntentChatBody</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentChatBodyMessage">type IntentChatBodyMessage</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentChatBodySession">type IntentChatBodySession</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentChatResult">type IntentChatResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentMessage">type IntentMessage</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentSessionBody">type IntentSessionBody</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentSessionResult">type IntentSessionResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#IntentSlot">type IntentSlot</a></dd>
 				
 				
 			
@@ -294,7 +343,7 @@ or decompilation of this software, unless required by law for interoperability, 
 
 			
 				
-				<h3 id="Chatopera.Chats">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6201:6322#L231">Chats</a>
+				<h3 id="Chatopera.Chats">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6252:6373#L232">Chats</a>
 					<a class="permalink" href="#Chatopera.Chats">&#xb6;</a>
 					
 					
@@ -354,7 +403,43 @@ or decompilation of this software, unless required by law for interoperability, 
 				
 			
 				
-				<h3 id="Chatopera.Ismute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7172:7227#L259">Ismute</a>
+				<h3 id="Chatopera.IntentChat">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=9847:9954#L349">IntentChat</a>
+					<a class="permalink" href="#Chatopera.IntentChat">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) IntentChat(sessionId <a href="/pkg/builtin/#string">string</a>, uid <a href="/pkg/builtin/#string">string</a>, textMessage <a href="/pkg/builtin/#string">string</a>) (*<a href="#IntentChatResult">IntentChatResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.IntentSession">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=8495:8586#L303">IntentSession</a>
+					<a class="permalink" href="#Chatopera.IntentSession">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) IntentSession(uid <a href="/pkg/builtin/#string">string</a>, channel <a href="/pkg/builtin/#string">string</a>) (*<a href="#IntentSessionResult">IntentSessionResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.IntentSessionDetail">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=8901:8988#L316">IntentSessionDetail</a>
+					<a class="permalink" href="#Chatopera.IntentSessionDetail">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Chatopera">Chatopera</a>) IntentSessionDetail(sessionId <a href="/pkg/builtin/#string">string</a>) (*<a href="#IntentSessionResult">IntentSessionResult</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Chatopera.Ismute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7222:7277#L259">Ismute</a>
 					<a class="permalink" href="#Chatopera.Ismute">&#xb6;</a>
 					
 					
@@ -369,7 +454,7 @@ or decompilation of this software, unless required by law for interoperability, 
 				
 			
 				
-				<h3 id="Chatopera.Mute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6671:6716#L240">Mute</a>
+				<h3 id="Chatopera.Mute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6722:6767#L241">Mute</a>
 					<a class="permalink" href="#Chatopera.Mute">&#xb6;</a>
 					
 					
@@ -384,7 +469,7 @@ or decompilation of this software, unless required by law for interoperability, 
 				
 			
 				
-				<h3 id="Chatopera.Unmute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6887:6934#L247">Unmute</a>
+				<h3 id="Chatopera.Unmute">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6938:6985#L248">Unmute</a>
 					<a class="permalink" href="#Chatopera.Unmute">&#xb6;</a>
 					
 					
@@ -399,7 +484,7 @@ or decompilation of this software, unless required by law for interoperability, 
 				
 			
 				
-				<h3 id="Chatopera.User">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7621:7681#L276">User</a>
+				<h3 id="Chatopera.User">func (*Chatopera) <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7653:7713#L274">User</a>
 					<a class="permalink" href="#Chatopera.User">&#xb6;</a>
 					
 					
@@ -428,7 +513,7 @@ or decompilation of this software, unless required by law for interoperability, 
 		
 			
 			
-			<h2 id="ChatsResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6048:6177#L224">ChatsResult</a>
+			<h2 id="ChatsResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=6048:6228#L224">ChatsResult</a>
 				<a class="permalink" href="#ChatsResult">&#xb6;</a>
 				
 				
@@ -438,9 +523,10 @@ or decompilation of this software, unless required by law for interoperability, 
 </p>
 
 			<pre>type ChatsResult struct {
-<span id="ChatsResult.UserID"></span>    UserID   <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
-<span id="ChatsResult.Lasttime"></span>    Lasttime <a href="/pkg/builtin/#string">string</a> `json:&#34;lasttime&#34;`
-<span id="ChatsResult.Created"></span>    Created  <a href="/pkg/builtin/#string">string</a> `json:&#34;created&#34;`
+<span id="ChatsResult.UserID"></span>    UserID      <a href="/pkg/builtin/#string">string</a> `json:&#34;userId&#34;`
+<span id="ChatsResult.TextMessage"></span>    TextMessage <a href="/pkg/builtin/#string">string</a> `json:&#34;textMessage&#34;`
+<span id="ChatsResult.Direction"></span>    Direction   <a href="/pkg/builtin/#string">string</a> `json:&#34;direction&#34;`
+<span id="ChatsResult.Created"></span>    Created     <a href="/pkg/builtin/#string">string</a> `json:&#34;created&#34;`
 }
 </pre>
 
@@ -577,7 +663,223 @@ or decompilation of this software, unless required by law for interoperability, 
 		
 			
 			
-			<h2 id="IsmuteResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7092:7145#L254">IsmuteResult</a>
+			<h2 id="IntentChatBody">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=9340:9526#L331">IntentChatBody</a>
+				<a class="permalink" href="#IntentChatBody">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentChatBody struct {
+<span id="IntentChatBody.FromUserID"></span>    FromUserID <a href="/pkg/builtin/#string">string</a>                `json:&#34;fromUserId&#34;`
+<span id="IntentChatBody.Session"></span>    Session    <a href="#IntentChatBodySession">IntentChatBodySession</a> `json:&#34;session&#34;`
+<span id="IntentChatBody.Message"></span>    Message    <a href="#IntentChatBodyMessage">IntentChatBodyMessage</a> `json:&#34;message&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentChatBodyMessage">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=9260:9338#L327">IntentChatBodyMessage</a>
+				<a class="permalink" href="#IntentChatBodyMessage">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentChatBodyMessage struct {
+<span id="IntentChatBodyMessage.TextMessage"></span>    TextMessage <a href="/pkg/builtin/#string">string</a> `json:&#34;textMessage&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentChatBodySession">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=9198:9258#L323">IntentChatBodySession</a>
+				<a class="permalink" href="#IntentChatBodySession">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentChatBodySession struct {
+<span id="IntentChatBodySession.ID"></span>    ID <a href="/pkg/builtin/#string">string</a> `json:&#34;id&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentChatResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=9721:9845#L344">IntentChatResult</a>
+				<a class="permalink" href="#IntentChatResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentChatResult struct {
+<span id="IntentChatResult.Message"></span>    Message <a href="#IntentMessage">IntentMessage</a>       `json:&#34;message&#34;`
+<span id="IntentChatResult.Session"></span>    Session <a href="#IntentSessionResult">IntentSessionResult</a> `json:&#34;session&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentMessage">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=9528:9719#L337">IntentMessage</a>
+				<a class="permalink" href="#IntentMessage">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentMessage struct {
+<span id="IntentMessage.Receiver"></span>    Receiver    <a href="/pkg/builtin/#string">string</a> `json:&#34;receiver&#34;`
+<span id="IntentMessage.IsProactive"></span>    IsProactive <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;is_proactive&#34;`
+<span id="IntentMessage.IsFallback"></span>    IsFallback  <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;is_fallback&#34;`
+<span id="IntentMessage.TextMessage"></span>    TextMessage <a href="/pkg/builtin/#string">string</a> `json:&#34;textMessage&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentSessionBody">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7908:8003#L281">IntentSessionBody</a>
+				<a class="permalink" href="#IntentSessionBody">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentSessionBody struct {
+<span id="IntentSessionBody.UID"></span>    UID     <a href="/pkg/builtin/#string">string</a> `json:&#34;uid&#34;`
+<span id="IntentSessionBody.Channel"></span>    Channel <a href="/pkg/builtin/#string">string</a> `json:&#34;channel&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentSessionResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=8164:8493#L293">IntentSessionResult</a>
+				<a class="permalink" href="#IntentSessionResult">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentSessionResult struct {
+<span id="IntentSessionResult.Channel"></span>    Channel    <a href="/pkg/builtin/#string">string</a>       `json:&#34;channel&#34;`
+<span id="IntentSessionResult.CreateDate"></span>    CreateDate <a href="/pkg/builtin/#string">string</a>       `json:&#34;createdate&#34;`
+<span id="IntentSessionResult.ID"></span>    ID         <a href="/pkg/builtin/#string">string</a>       `json:&#34;id&#34;`
+<span id="IntentSessionResult.IntentName"></span>    IntentName <a href="/pkg/builtin/#string">string</a>       `json:&#34;intent_name&#34;`
+<span id="IntentSessionResult.Resolved"></span>    Resolved   <a href="/pkg/builtin/#bool">bool</a>         `json:&#34;resolved&#34;`
+<span id="IntentSessionResult.UID"></span>    UID        <a href="/pkg/builtin/#string">string</a>       `json:&#34;uid&#34;`
+<span id="IntentSessionResult.IntentSlot"></span>    IntentSlot []<a href="#IntentSlot">IntentSlot</a> `json:&#34;entities&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IntentSlot">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=8005:8162#L286">IntentSlot</a>
+				<a class="permalink" href="#IntentSlot">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IntentSlot struct {
+<span id="IntentSlot.DictName"></span>    DictName <a href="/pkg/builtin/#string">string</a> `json:&#34;dictname&#34;`
+<span id="IntentSlot.Name"></span>    Name     <a href="/pkg/builtin/#string">string</a> `json:&#34;name&#34;`
+<span id="IntentSlot.Requires"></span>    Requires <a href="/pkg/builtin/#bool">bool</a>   `json:&#34;requires&#34;`
+<span id="IntentSlot.Val"></span>    Val      <a href="/pkg/builtin/#string">string</a> `json:&#34;val&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IsmuteResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7142:7195#L254">IsmuteResult</a>
 				<a class="permalink" href="#IsmuteResult">&#xb6;</a>
 				
 				
@@ -660,7 +962,7 @@ or decompilation of this software, unless required by law for interoperability, 
 		
 			
 			
-			<h2 id="UserResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7445:7601#L267">UserResult</a>
+			<h2 id="UserResult">type <a href="https://github.com/chatopera/chatopera-go-sdk/blob/master/chatopera.go?s=7495:7651#L267">UserResult</a>
 				<a class="permalink" href="#UserResult">&#xb6;</a>
 				
 				

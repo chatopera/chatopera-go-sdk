@@ -1,5 +1,6 @@
 # chatopera-go-sdk
-企业聊天机器人-Go开发工具包
+
+企业聊天机器人-Go 开发工具包
 
 <p align="center">
     <b>Chatopera开发者平台：809987971， <a href="https://jq.qq.com/?_wv=1027&k=5S51T2a" target="_blank">点击链接加入群聊</a></b><br>
@@ -10,7 +11,7 @@
 # [chatopera-go-sdk](https://github.com/chatopera/chatopera-go-sdk)
 企业聊天机器人-Go开发工具包
 
-本教程介绍如何使用Chatopera机器人开发者平台的[Go SDK](https://github.com/chatopera/chatopera-go-sdk)与机器人进行集成，阅读本教程需要10分钟时间。
+本教程介绍如何使用 Chatopera 机器人开发者平台的[Go SDK](https://github.com/chatopera/chatopera-go-sdk)与机器人进行集成，阅读本教程需要 10 分钟时间。
 
 [安装](#安装)
 
@@ -20,10 +21,9 @@
 
 [单元测试](#单元测试)
 
-[更多SDK](#更多SDK)
+[更多 SDK](#更多SDK)
 
 [开源许可协议](#开源许可协议)
-
 
 ## 安装
 
@@ -40,7 +40,6 @@ go get github.com/chatopera/chatopera-go-sdk
   </a>
 </p>
 
-
 ### 点击“立即使用”
 
 第一登录输入“邮箱”和“密码”，点击“回车键”，完成账户创建。
@@ -49,19 +48,17 @@ go get github.com/chatopera/chatopera-go-sdk
 
 点击“创建机器人”，并填入下面各项：
 
-| 项目 | 值 | 描述 |
-| --- | --- | --- |
-| 机器人名称 | 小松 | 机器人的名字 |
-| 描述 | 机器人示例 | 机器人的描述 |
-| 语言 | zh_CN | 机器人的语言，目前支持中文(zh_CN)和英文(en_US) |
+| 项目       | 值         | 描述                                           |
+| ---------- | ---------- | ---------------------------------------------- |
+| 机器人名称 | 小松       | 机器人的名字                                   |
+| 描述       | 机器人示例 | 机器人的描述                                   |
+| 语言       | zh_CN      | 机器人的语言，目前支持中文(zh_CN)和英文(en_US) |
 
 【提示】其它项如兜底回复，问候语可以在创建后，设置页面修改。
-
 
 ### 下载知识库文件
 
 下载知识库示例文件[保全作业中常见问题.xlsx](https://github.com/chatopera/chatbot-sales/raw/master/%E4%BF%9D%E9%99%A9/faq/%E4%BF%9D%E5%85%A8%E4%BD%9C%E4%B8%9A%E4%B8%AD%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.xlsx)，保存文件名为*保全作业中常见问题.xlsx*。
-
 
 ### 导入知识库
 
@@ -83,13 +80,13 @@ go get github.com/chatopera/chatopera-go-sdk
   </a>
 </p>
 
-**输入：** 保全作业中常见问题 
+**输入：** 保全作业中常见问题
 
 确认得到回复。
 
 ### 获取*ClientId*和*Secret*
 
-集成机器人服务的方式是通过SDK，每个机器人实例需要通过*ClientId*和*Secret*初始化，完成认证和授权。打开机器人【设置】页面，拷贝*ClientId*和*Secret*。
+集成机器人服务的方式是通过 SDK，每个机器人实例需要通过*ClientId*和*Secret*初始化，完成认证和授权。打开机器人【设置】页面，拷贝*ClientId*和*Secret*。
 
 <p align="center">
   <b>显示Secret</b><br>
@@ -98,17 +95,15 @@ go get github.com/chatopera/chatopera-go-sdk
   </a>
 </p>
 
-
 ## 执行示例程序
 
 假设您已经:
 
-1) 准备好**ClientId**和**Secret**了；
+1. 准备好**ClientId**和**Secret**了；
 
-2) 安装了[chatopera-go-sdk](https://github.com/chatopera/chatopera-go-sdk)，
+2. 安装了[chatopera-go-sdk](https://github.com/chatopera/chatopera-go-sdk)，
 
 那么，可以用以下代码测试。
-
 
 ```go
 import (
@@ -119,19 +114,19 @@ reply, err := chatbot.Conversation("userId", "textMessage")
 reply.String # 机器人文本回复
 ```
 
-
 接口概述
 
 ```
-chatbot.Detail # 获得机器人详情
-chatbot.Faq # 检索知识库
-chatbot.Conversation # 检索多轮对话
-chatbot.Users # 检索用户列表
-chatbot.User # 获得用户详情，包括用户意向分类
-chatbot.Chats # 用户聊天历史
+chatbot.Detail         # 获得机器人详情
+chatbot.Faq            # 检索知识库
+chatbot.Conversation   # 检索多轮对话
+chatbot.IntentChat     # 意图识别对话
+chatbot.Users          # 检索用户列表
+chatbot.User           # 获得用户详情，包括用户意向分类
+chatbot.Chats          # 用户聊天历史
 ```
 
-【提示】**更多接口介绍请访问[API接口文档](https://chatopera.github.io/chatopera-go-sdk/)。各接口的返回值详细描述请访问[开发者平台文档中心](https://docs.chatopera.com/chatbot-platform.html)。**
+【提示】**更多接口介绍请访问[API 接口文档](https://chatopera.github.io/chatopera-go-sdk/)。各接口的返回值详细描述请访问[开发者平台文档中心](https://docs.chatopera.com/chatbot-platform.html)。**
 
 ## 单元测试
 
@@ -143,8 +138,7 @@ export GOPATH=YOUR_PROJECT_GOPATH:$GOPATH
 go test -run ''
 ```
 
-
-## 更多SDK
+## 更多 SDK
 
 <p align="center">
   <b>集成面板</b><br>
