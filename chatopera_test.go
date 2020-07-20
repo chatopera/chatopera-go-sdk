@@ -21,7 +21,7 @@ func TestConversion(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	} else {
-		t.Log("TestConversion reply:" + reply.String)
+		t.Log("TestConversion reply:", reply)
 	}
 }
 func TestFaq(t *testing.T) {
@@ -33,7 +33,7 @@ func TestFaq(t *testing.T) {
 	}
 }
 func TestUsers(t *testing.T) {
-	_, _, _, _, err := bot.Users(1, 1, "-lasttime")
+	_, err := bot.Users(1, 1, "-lasttime")
 	if err != nil {
 		t.Error(err)
 	} else {
@@ -41,7 +41,7 @@ func TestUsers(t *testing.T) {
 	}
 }
 func TestChats(t *testing.T) {
-	_, _, _, _, err := bot.Chats("xiao", 1, 1, "-lasttime")
+	_, err := bot.Chats("xiao", 1, 1, "-lasttime")
 	if err != nil {
 		t.Error(err)
 	} else {
@@ -49,7 +49,7 @@ func TestChats(t *testing.T) {
 	}
 }
 func TestMute(t *testing.T) {
-	err := bot.Mute("xiao")
+	_, err := bot.Mute("xiao")
 	if err != nil {
 		t.Error(err)
 	} else {
@@ -57,7 +57,7 @@ func TestMute(t *testing.T) {
 	}
 }
 func TestUnmute(t *testing.T) {
-	err := bot.Unmute("xiao")
+	_, err := bot.Unmute("xiao")
 	if err != nil {
 		t.Error(err)
 	} else {

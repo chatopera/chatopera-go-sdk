@@ -14,17 +14,15 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
-	"errors"
 	"io"
 	"math/rand"
 	"net/http"
+	"runtime/debug"
 	"strconv"
 	"time"
 )
 
-const (
-	SaasAPI = "https://bot.chatopera.com"
-)
+const SaasAPI = "https://bot.chatopera.com"
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -69,15 +67,44 @@ func generate(appID string, secret string, method string, path string) (string, 
 }
 
 type Chatopera struct {
-	appID  string
-	sercet string
+	appID   string
+	sercet  string
+	saasAPI string
 }
 
 // 聊天机器人实例
-func Chatbot(appID string, sercet string) *Chatopera {
+func Chatbot(args ...interface{}) *Chatopera {
 	result := new(Chatopera)
-	result.appID = appID
-	result.sercet = sercet
+	result.saasAPI = SaasAPI
+
+	for i, p := range args {
+		switch i {
+		case 0:
+			param, ok := p.(string)
+			if !ok {
+				panic("1st parameter not type string.")
+			}
+			result.appID = param
+
+		case 1:
+			param, ok := p.(string)
+			if !ok {
+				panic("2nd parameter not type string.")
+			}
+			result.sercet = param
+
+		case 2:
+			param, ok := p.(string)
+			if !ok {
+				panic("2nd parameter not type string.")
+			}
+			result.saasAPI = param
+
+		default:
+			panic("Wrong parameter count.")
+		}
+	}
+
 	return result
 }
 
@@ -91,19 +118,23 @@ type Res struct {
 }
 
 func httpClient() *http.Client {
-	return &http.Client{Timeout: 5 * time.Second}
+	return &http.Client{
+		Timeout: 5 * time.Second,
+	}
 }
 
 // 发送请求工具方法
-func request(appID string, sercet string, method string, path string, body io.Reader, v interface{}) (int32, int32, int32, error) {
-	t, err := generate(appID, sercet, method, path)
+func (c *Chatopera) request(method string, path string, body io.Reader) (*Res, error) {
+	t, err := generate(c.appID, c.sercet, method, path)
 	if err != nil {
-		return 0, 0, 0, err
+		debug.PrintStack()
+		return nil, err
 	}
 
-	req, err := http.NewRequest(method, SaasAPI+path, body)
+	req, err := http.NewRequest(method, c.saasAPI+path, body)
 	if err != nil {
-		return 0, 0, 0, err
+		debug.PrintStack()
+		return nil, err
 	}
 	req.Header.Add("Authorization", t)
 
@@ -113,23 +144,32 @@ func request(appID string, sercet string, method string, path string, body io.Re
 
 	r, err := httpClient().Do(req)
 	if err != nil {
-		return 0, 0, 0, err
+		debug.PrintStack()
+		return nil, err
 	}
 	defer r.Body.Close()
 
 	res := new(Res)
-	res.Data = v
 
 	err = json.NewDecoder(r.Body).Decode(res)
 	if err != nil {
-		return 0, 0, 0, err
+		debug.PrintStack()
+		return nil, err
 	}
 
-	if res.RC != 0 {
-		return 0, 0, 0, errors.New(res.Error)
-	}
+	return res, nil
+}
 
-	return res.Total, res.CurrentPage, res.TotalPage, nil
+func (c *Chatopera) command(method string, path string, payloads ...interface{}) (*Res, error) {
+	path = "/api/v1/chatbot/" + c.appID + path
+
+	var reader io.Reader = nil
+	if payloads != nil {
+		json, _ := json.Marshal(payloads[0])
+		reader = bytes.NewBuffer(json)
+	}
+	res, err := c.request(method, path, reader)
+	return res, err
 }
 
 // 机器人详情
@@ -142,24 +182,8 @@ type BotDetail struct {
 }
 
 // 获得机器人详情
-func (c *Chatopera) Detail() (*BotDetail, error) {
-	path := "/api/v1/chatbot/" + c.appID
-	result := new(BotDetail)
-
-	_, _, _, err := request(c.appID, c.sercet, "GET", path, nil, result)
-	return result, err
-}
-
-// 多轮对话回复
-type ConversationResult struct {
-	State           string      `json:"state"`
-	CreatedAt       int64       `json:"createdAt"`
-	String          string      `json:"string"`
-	TopicName       string      `json:"topicName"`
-	SubReplies      interface{} `json:"subReplies"`
-	LogicIsFallback bool        `json:"logic_is_fallback"`
-	BotName         string      `json:"botName"`
-	Service         interface{} `json:"service"`
+func (c *Chatopera) Detail() (*Res, error) {
+	return c.command("GET", "/")
 }
 
 type ConversationBody struct {
@@ -169,28 +193,14 @@ type ConversationBody struct {
 }
 
 // 检索多轮对话
-func (c *Chatopera) Conversation(userID string, textMessage string) (*ConversationResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/conversation/query"
-	result := new(ConversationResult)
-
+func (c *Chatopera) Conversation(userID string, textMessage string) (*Res, error) {
 	body := ConversationBody{
 		FromUserID:  userID,
 		TextMessage: textMessage,
 		IsDebug:     false,
 	}
 
-	json, _ := json.Marshal(body)
-
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, bytes.NewBuffer(json), result)
-	return result, err
-}
-
-// 知识库回复
-type FaqResult struct {
-	ID    string  `json:"id"`
-	Score float32 `json:"score"`
-	Post  string  `json:"post"`
-	Reply string  `json:"reply"`
+	return c.command("POST", "/conversation/query", body)
 }
 
 type FaqBody struct {
@@ -199,93 +209,42 @@ type FaqBody struct {
 }
 
 // 检索知识库
-func (c *Chatopera) Faq(userID string, query string) (*[]FaqResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/faq/query"
-	result := new([]FaqResult)
-
+func (c *Chatopera) Faq(userID string, query string) (*Res, error) {
 	body := FaqBody{
 		FromUserID: userID,
 		Query:      query,
 	}
 
-	json, _ := json.Marshal(body)
-
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, bytes.NewBuffer(json), result)
-	return result, err
-}
-
-// 用户信息
-type UsersResult struct {
-	UserID   string `json:"userId"`
-	Lasttime string `json:"lasttime"`
-	Created  string `json:"created"`
+	return c.command("POST", "/faq/query", body)
 }
 
 // 获得用户列表
-func (c *Chatopera) Users(limit int, page int, sortby string) (int32, int32, int32, *[]UsersResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/users?page=" + strconv.Itoa(page) + "&limit=" + strconv.Itoa(limit) + "&sortby=" + sortby
-	result := new([]UsersResult)
-
-	total, currentPage, totalPage, err := request(c.appID, c.sercet, "GET", path, nil, result)
-	return total, currentPage, totalPage, result, err
-}
-
-// 聊天历史
-type ChatsResult struct {
-	UserID      string `json:"userId"`
-	TextMessage string `json:"textMessage"`
-	Direction   string `json:"direction"`
-	Created     string `json:"created"`
+func (c *Chatopera) Users(limit int, page int, sortby string) (*Res, error) {
+	return c.command("GET", "/users?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby)
 }
 
 // 获得聊天历史
-func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (int32, int32, int32, *[]ChatsResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/chats?page=" + strconv.Itoa(page) + "&limit=" + strconv.Itoa(limit) + "&sortby=" + sortby
-	result := new([]ChatsResult)
-
-	total, currentPage, totalPage, err := request(c.appID, c.sercet, "GET", path, nil, result)
-	return total, currentPage, totalPage, result, err
+func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (*Res, error) {
+	return c.command("GET", "/users/"+userID+"/chats?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby, nil)
 }
 
 // 屏蔽用户
-func (c *Chatopera) Mute(userID string) error {
-	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/mute"
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, nil)
-	return err
+func (c *Chatopera) Mute(userID string) (*Res, error) {
+	return c.command("POST", "/users/"+userID+"/mute")
 }
 
 // 取消屏蔽
-func (c *Chatopera) Unmute(userID string) error {
-	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/unmute"
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, nil)
-	return err
-}
-
-type IsmuteResult struct {
-	Mute bool `json:"mute"`
+func (c *Chatopera) Unmute(userID string) (*Res, error) {
+	return c.command("POST", "/users/"+userID+"/unmute")
 }
 
 // 用户是否被屏蔽
-func (c *Chatopera) Ismute(userID string) (bool, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/ismute"
-	result := new(IsmuteResult)
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, nil, result)
-	return result.Mute, err
+func (c *Chatopera) Ismute(userID string) (*Res, error) {
+	return c.command("POST", "/users/"+userID+"/ismute")
 }
 
-// 用户画像
-type UserResult struct {
-	UserID   string `json:"userId"`
-	Name     string `json:"name"`
-	Lasttime string `json:"lasttime"`
-	Mute     bool   `json:"mute"`
-}
-
-func (c *Chatopera) User(userID string) (*UserResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/users/" + userID + "/profile"
-	result := new(UserResult)
-	_, _, _, err := request(c.appID, c.sercet, "GET", path, nil, result)
-	return result, err
+func (c *Chatopera) User(userID string) (*Res, error) {
+	return c.command("GET", "/users/"+userID+"/profile")
 }
 
 type IntentSessionBody struct {
@@ -293,41 +252,16 @@ type IntentSessionBody struct {
 	Channel string `json:"channel"`
 }
 
-type IntentSlot struct {
-	DictName string `json:"dictname"`
-	Name     string `json:"name"`
-	Requires bool   `json:"requires"`
-	Val      string `json:"val"`
-}
-
-type IntentSessionResult struct {
-	Channel    string       `json:"channel"`
-	CreateDate string       `json:"createdate"`
-	ID         string       `json:"id"`
-	IntentName string       `json:"intent_name"`
-	Resolved   bool         `json:"resolved"`
-	UID        string       `json:"uid"`
-	IntentSlot []IntentSlot `json:"entities"`
-}
-
-func (c *Chatopera) IntentSession(uid string, channel string) (*IntentSessionResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/clause/prover/session"
-	result := new(IntentSessionResult)
+func (c *Chatopera) IntentSession(uid string, channel string) (*Res, error) {
 	body := IntentSessionBody{
 		UID:     uid,
 		Channel: channel,
 	}
-	json, _ := json.Marshal(body)
-
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, bytes.NewBuffer(json), result)
-	return result, err
+	return c.command("POST", "/clause/prover/session", body)
 }
 
-func (c *Chatopera) IntentSessionDetail(sessionId string) (*IntentSessionResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/clause/prover/session/" + sessionId
-	result := new(IntentSessionResult)
-	_, _, _, err := request(c.appID, c.sercet, "GET", path, nil, result)
-	return result, err
+func (c *Chatopera) IntentSessionDetail(sessionId string) (*Res, error) {
+	return c.command("GET", "/clause/prover/session/"+sessionId)
 }
 
 type IntentChatBodySession struct {
@@ -351,14 +285,7 @@ type IntentMessage struct {
 	TextMessage string `json:"textMessage"`
 }
 
-type IntentChatResult struct {
-	Message IntentMessage       `json:"message"`
-	Session IntentSessionResult `json:"session"`
-}
-
-func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string) (*IntentChatResult, error) {
-	path := "/api/v1/chatbot/" + c.appID + "/clause/prover/chat"
-	result := new(IntentChatResult)
+func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string) (*Res, error) {
 	body := IntentChatBody{
 		FromUserID: uid,
 		Session: IntentChatBodySession{
@@ -368,7 +295,5 @@ func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string)
 			TextMessage: textMessage,
 		},
 	}
-	json, _ := json.Marshal(body)
-	_, _, _, err := request(c.appID, c.sercet, "POST", path, bytes.NewBuffer(json), result)
-	return result, err
+	return c.command("POST", "/clause/prover/chat", body)
 }
