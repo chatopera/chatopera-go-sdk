@@ -19,6 +19,7 @@ import (
 	"net/http"
 	"runtime/debug"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -114,6 +115,8 @@ type Res struct {
 	CurrentPage int32       `json:"current_page"`
 	TotalPage   int32       `json:"total_page"`
 	Error       string      `json:"error"`
+	Msg         string      `json:"msg"`
+	Status      interface{} `json:"status"`
 	Data        interface{} `json:"data"`
 }
 
@@ -163,12 +166,19 @@ func (c *Chatopera) request(method string, path string, body io.Reader) (*Res, e
 func (c *Chatopera) command(method string, path string, payloads ...interface{}) (*Res, error) {
 	path = "/api/v1/chatbot/" + c.appID + path
 
+	if strings.Contains(path, "?") {
+		path += "&sdklang=go"
+	} else {
+		path += "?sdklang=go"
+	}
+
 	var reader io.Reader = nil
 	if payloads != nil {
 		json, _ := json.Marshal(payloads[0])
 		reader = bytes.NewBuffer(json)
 	}
 	res, err := c.request(method, path, reader)
+
 	return res, err
 }
 
@@ -225,7 +235,7 @@ func (c *Chatopera) Users(limit int, page int, sortby string) (*Res, error) {
 
 // 获得聊天历史
 func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (*Res, error) {
-	return c.command("GET", "/users/"+userID+"/chats?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby, nil)
+	return c.command("GET", "/users/"+userID+"/chats?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby)
 }
 
 // 屏蔽用户
