@@ -56,22 +56,13 @@ export GOPATH=YOUR_PROJECT_GOPATH:$GOPATH
 go test -run ''
 ```
 
-## 更多 SDK
-
-<p align="center">
-  <b>集成面板</b><br>
-  <a href="http://bot.chatopera.com/" target="_blank">
-      <img src="https://user-images.githubusercontent.com/3538629/48044669-1e212e80-e1c8-11e8-918c-8e6fdf4e95c0.png" width="800">
-  </a>
-</p>
-
 ## 开源许可协议
 
-Copyright (2018) [北京华夏春松科技有限公司](https://www.chatopera.com/)
+Copyright (2018-2020) [北京华夏春松科技有限公司](https://www.chatopera.com/)
 
 [Apache License Version 2.0](./LICENSE)
 
-Copyright 2017-2018, [北京华夏春松科技有限公司](https://www.chatopera.com/). All rights reserved. This software and related documentation are provided under a license agreement containing restrictions on use and disclosure and are protected by intellectual property laws. Except as expressly permitted in your license agreement or allowed by law, you may not use, copy, reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit, perform, publish, or display any part, in any form, or by any means. Reverse engineering, disassembly, or decompilation of this software, unless required by law for interoperability, is prohibited.
+Copyright 2018-2020, [北京华夏春松科技有限公司](https://www.chatopera.com/). All rights reserved. This software and related documentation are provided under a license agreement containing restrictions on use and disclosure and are protected by intellectual property laws. Except as expressly permitted in your license agreement or allowed by law, you may not use, copy, reproduce, translate, broadcast, modify, license, transmit, distribute, exhibit, perform, publish, or display any part, in any form, or by any means. Reverse engineering, disassembly, or decompilation of this software, unless required by law for interoperability, is prohibited.
 
 [![chatoper banner][co-banner-image]][co-url]
 
