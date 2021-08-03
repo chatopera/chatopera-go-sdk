@@ -14,7 +14,17 @@ import (
 	"github.com/chatopera/chatopera-go-sdk"
 )
 
-var bot = chatopera.Chatbot("xxx", "xxx")
+var bot = chatopera.NewChatbot("xxx", "xxx")
+var admin = chatopera.NewChatopera("token-xxx")
+
+func TestGetChatbots(t *testing.T) {
+	reply, err := admin.Command("GET", "/chatbot")
+	if err != nil {
+		t.Error(err)
+	} else {
+		t.Log("TestGetChatbots reply:", reply)
+	}
+}
 
 func TestConversion(t *testing.T) {
 	reply, err := bot.Conversation("xiao", "你好")

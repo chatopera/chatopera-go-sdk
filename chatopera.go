@@ -1,4 +1,4 @@
-// Copyright 2018 Chatopera Inc. All rights reserved.
+// Copyright 2018 Chatbot Inc. All rights reserved.
 // This software and related documentation are provided under a license agreement containing
 // restrictions on use and disclosure and are protected by intellectual property laws.
 // Except as expressly permitted in your license agreement or allowed by law, you may not use,
@@ -67,15 +67,15 @@ func generate(appID string, secret string, method string, path string) (string, 
 	return "", err
 }
 
-type Chatopera struct {
+type Chatbot struct {
 	appID   string
 	sercet  string
 	saasAPI string
 }
 
 // 聊天机器人实例
-func Chatbot(args ...interface{}) *Chatopera {
-	result := new(Chatopera)
+func NewChatbot(args ...interface{}) *Chatbot {
+	result := new(Chatbot)
 	result.saasAPI = SaasAPI
 
 	for i, p := range args {
@@ -127,7 +127,7 @@ func httpClient() *http.Client {
 }
 
 // 发送请求工具方法
-func (c *Chatopera) request(method string, path string, body io.Reader) (*Res, error) {
+func (c *Chatbot) request(method string, path string, body io.Reader) (*Res, error) {
 	t, err := generate(c.appID, c.sercet, method, path)
 	if err != nil {
 		debug.PrintStack()
@@ -163,7 +163,7 @@ func (c *Chatopera) request(method string, path string, body io.Reader) (*Res, e
 	return res, nil
 }
 
-func (c *Chatopera) command(method string, path string, payloads ...interface{}) (*Res, error) {
+func (c *Chatbot) Command(method string, path string, payloads ...interface{}) (*Res, error) {
 	path = "/api/v1/chatbot/" + c.appID + path
 
 	if strings.Contains(path, "?") {
@@ -192,8 +192,8 @@ type BotDetail struct {
 }
 
 // 获得机器人详情
-func (c *Chatopera) Detail() (*Res, error) {
-	return c.command("GET", "/")
+func (c *Chatbot) Detail() (*Res, error) {
+	return c.Command("GET", "/")
 }
 
 type ConversationBody struct {
@@ -203,14 +203,14 @@ type ConversationBody struct {
 }
 
 // 检索多轮对话
-func (c *Chatopera) Conversation(userID string, textMessage string) (*Res, error) {
+func (c *Chatbot) Conversation(userID string, textMessage string) (*Res, error) {
 	body := ConversationBody{
 		FromUserID:  userID,
 		TextMessage: textMessage,
 		IsDebug:     false,
 	}
 
-	return c.command("POST", "/conversation/query", body)
+	return c.Command("POST", "/conversation/query", body)
 }
 
 type FaqBody struct {
@@ -219,42 +219,42 @@ type FaqBody struct {
 }
 
 // 检索知识库
-func (c *Chatopera) Faq(userID string, query string) (*Res, error) {
+func (c *Chatbot) Faq(userID string, query string) (*Res, error) {
 	body := FaqBody{
 		FromUserID: userID,
 		Query:      query,
 	}
 
-	return c.command("POST", "/faq/query", body)
+	return c.Command("POST", "/faq/query", body)
 }
 
 // 获得用户列表
-func (c *Chatopera) Users(limit int, page int, sortby string) (*Res, error) {
-	return c.command("GET", "/users?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby)
+func (c *Chatbot) Users(limit int, page int, sortby string) (*Res, error) {
+	return c.Command("GET", "/users?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby)
 }
 
 // 获得聊天历史
-func (c *Chatopera) Chats(userID string, limit int, page int, sortby string) (*Res, error) {
-	return c.command("GET", "/users/"+userID+"/chats?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby)
+func (c *Chatbot) Chats(userID string, limit int, page int, sortby string) (*Res, error) {
+	return c.Command("GET", "/users/"+userID+"/chats?page="+strconv.Itoa(page)+"&limit="+strconv.Itoa(limit)+"&sortby="+sortby)
 }
 
 // 屏蔽用户
-func (c *Chatopera) Mute(userID string) (*Res, error) {
-	return c.command("POST", "/users/"+userID+"/mute")
+func (c *Chatbot) Mute(userID string) (*Res, error) {
+	return c.Command("POST", "/users/"+userID+"/mute")
 }
 
 // 取消屏蔽
-func (c *Chatopera) Unmute(userID string) (*Res, error) {
-	return c.command("POST", "/users/"+userID+"/unmute")
+func (c *Chatbot) Unmute(userID string) (*Res, error) {
+	return c.Command("POST", "/users/"+userID+"/unmute")
 }
 
 // 用户是否被屏蔽
-func (c *Chatopera) Ismute(userID string) (*Res, error) {
-	return c.command("POST", "/users/"+userID+"/ismute")
+func (c *Chatbot) Ismute(userID string) (*Res, error) {
+	return c.Command("POST", "/users/"+userID+"/ismute")
 }
 
-func (c *Chatopera) User(userID string) (*Res, error) {
-	return c.command("GET", "/users/"+userID+"/profile")
+func (c *Chatbot) User(userID string) (*Res, error) {
+	return c.Command("GET", "/users/"+userID+"/profile")
 }
 
 type IntentSessionBody struct {
@@ -262,16 +262,16 @@ type IntentSessionBody struct {
 	Channel string `json:"channel"`
 }
 
-func (c *Chatopera) IntentSession(uid string, channel string) (*Res, error) {
+func (c *Chatbot) IntentSession(uid string, channel string) (*Res, error) {
 	body := IntentSessionBody{
 		UID:     uid,
 		Channel: channel,
 	}
-	return c.command("POST", "/clause/prover/session", body)
+	return c.Command("POST", "/clause/prover/session", body)
 }
 
-func (c *Chatopera) IntentSessionDetail(sessionId string) (*Res, error) {
-	return c.command("GET", "/clause/prover/session/"+sessionId)
+func (c *Chatbot) IntentSessionDetail(sessionId string) (*Res, error) {
+	return c.Command("GET", "/clause/prover/session/"+sessionId)
 }
 
 type IntentChatBodySession struct {
@@ -295,7 +295,7 @@ type IntentMessage struct {
 	TextMessage string `json:"textMessage"`
 }
 
-func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string) (*Res, error) {
+func (c *Chatbot) IntentChat(sessionId string, uid string, textMessage string) (*Res, error) {
 	body := IntentChatBody{
 		FromUserID: uid,
 		Session: IntentChatBodySession{
@@ -305,5 +305,88 @@ func (c *Chatopera) IntentChat(sessionId string, uid string, textMessage string)
 			TextMessage: textMessage,
 		},
 	}
-	return c.command("POST", "/clause/prover/chat", body)
+	return c.Command("POST", "/clause/prover/chat", body)
+}
+
+type Chatopera struct {
+	accessToken string
+	saasAPI     string
+}
+
+// 聊天机器人实例
+func NewChatopera(args ...interface{}) *Chatopera {
+	result := new(Chatopera)
+	result.saasAPI = SaasAPI
+
+	for i, p := range args {
+		switch i {
+		case 0:
+			param, ok := p.(string)
+			if !ok {
+				panic("1st parameter not type string.")
+			}
+			result.accessToken = param
+
+		case 2:
+			param, ok := p.(string)
+			if !ok {
+				panic("2nd parameter not type string.")
+			}
+			result.saasAPI = param
+
+		default:
+			panic("Wrong parameter count.")
+		}
+	}
+
+	return result
+}
+
+func (c *Chatopera) Command(method string, path string, payloads ...interface{}) (*Res, error) {
+	path = "/api/v1" + path
+
+	if strings.Contains(path, "?") {
+		path += "&sdklang=go"
+	} else {
+		path += "?sdklang=go"
+	}
+
+	var reader io.Reader = nil
+	if payloads != nil {
+		json, _ := json.Marshal(payloads[0])
+		reader = bytes.NewBuffer(json)
+	}
+	res, err := c.request(method, path, reader)
+
+	return res, err
+}
+
+func (c *Chatopera) request(method string, path string, body io.Reader) (*Res, error) {
+	req, err := http.NewRequest(method, c.saasAPI+path, body)
+	if err != nil {
+		debug.PrintStack()
+		return nil, err
+	}
+	req.Header.Add("Authorization", "Bearer "+c.accessToken)
+
+	if body != nil {
+		req.Header.Set("Content-Type", "application/json")
+	}
+
+	r, err := httpClient().Do(req)
+	if err != nil {
+		debug.PrintStack()
+		return nil, err
+	}
+	defer r.Body.Close()
+
+	res := new(Res)
+
+	err = json.NewDecoder(r.Body).Decode(res)
+	if err != nil {
+		debug.PrintStack()
+		return nil, err
+	}
+
+	return res, nil
 }
