@@ -1,15 +1,12 @@
-# chatopera-go-sdk
+# [Chatopera Go SDK](https://github.com/chatopera/chatopera-go-sdk)
 
-企业聊天机器人-Go 开发工具包
+---
 
-<p align="center">
-    <b>Chatopera开发者平台：809987971， <a href="https://jq.qq.com/?_wv=1027&k=5S51T2a" target="_blank">点击链接加入群聊</a></b><br>
-    <img src="https://user-images.githubusercontent.com/3538629/48105854-0bfcca00-e274-11e8-8eb4-ffb46a2c9179.png" width="200">
-  </p>
-  
-  
-# [chatopera-go-sdk](https://github.com/chatopera/chatopera-go-sdk)
-企业聊天机器人-Go开发工具包
+https://bot.chatopera.com/
+
+低代码或无代码方式定制智能对话机器人！
+
+[Chatopera](https://www.chatopera.com/) 提供聊天机器人开发者平台，Chatopera Go SDK 用于在 Go 应用中集成[聊天机器人服务](https://bot.chatopera.com/)。
 
 本教程介绍如何使用 Chatopera 机器人开发者平台的[Go SDK](https://github.com/chatopera/chatopera-go-sdk)与机器人进行集成，阅读本教程需要 10 分钟时间。
 
@@ -21,9 +18,9 @@ go get github.com/chatopera/chatopera-go-sdk
 
 ## 使用文档
 
-快速开始，类接口定义和实例化文档等，参考 [文档中心](https://docs.chatopera.com/products/chatbot-platform/integration.html)：
+快速开始，类接口定义和实例化文档等，参考 [文档中心](https://docs.chatopera.com/products/chatbot-platform/integration/index.html)：
 
-[https://docs.chatopera.com/products/chatbot-platform/integration.html](https://docs.chatopera.com/products/chatbot-platform/integration.html)
+[https://docs.chatopera.com/products/chatbot-platform/integration/index.html](https://docs.chatopera.com/products/chatbot-platform/integration/index.html)
 
 ## 示例程序
 
